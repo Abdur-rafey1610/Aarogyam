@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -20,6 +20,7 @@ import FamilyManagement from "./pages/FamilyManagement";
 import ViewRecord from "./pages/ViewRecord";
 import Records from "./pages/Records";
 import Profile from "./pages/Profile";
+import TestPage from "./pages/TestPage";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +30,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <AuthProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<Login />} />
             <Route element={<ProtectedRoute />}>
@@ -48,11 +49,12 @@ const App = () => (
               <Route path="/family-management" element={<FamilyManagement />} />
               <Route path="/view-record/:userType/:abhaId" element={<ViewRecord />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/test-page" element={<TestPage />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>

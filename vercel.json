@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/view-record/patient/(.*)",
+      "destination": "/view-record/patient/[abhaId]",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "text/html"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

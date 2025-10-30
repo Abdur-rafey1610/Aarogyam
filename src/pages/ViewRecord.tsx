@@ -91,7 +91,8 @@ const RecordSection = ({ icon: Icon, title, children }: { icon: React.ElementTyp
 
 // --- Main Component ---
 const ViewRecord = () => {
-  const { userType, abhaId } = useParams<{ userType: 'doctor' | 'citizen', abhaId: string }>();
+  const { userType, abhaId: encodedAbhaId } = useParams<{ userType: 'doctor' | 'citizen', abhaId: string }>();
+  const abhaId = encodedAbhaId ? decodeURIComponent(encodedAbhaId) : '';
   console.log('ViewRecord component rendered with userType:', userType, 'and abhaId:', abhaId);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -193,8 +194,7 @@ const ViewRecord = () => {
         </div>
       </div>
 
-      {/* Profile Info */}
-      <div className="p-4 -mt-12">
+<div className="p-4">
         <Card className="p-4 flex flex-col items-center text-center card-soft shadow-lg">
           <Avatar className="w-24 h-24 mb-3 border-4 border-primary/50 ring-4 ring-primary/20">
             <AvatarImage src={patientData.avatarUrl} alt={patientData.name} />

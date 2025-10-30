@@ -14,8 +14,7 @@ const BottomNavigation = ({ activeTab, onTabChange }: BottomNavigationProps) => 
     { id: 'home', label: 'Home', icon: Home, path: '/' },
     { id: 'records', label: 'Records', icon: FileText, path: '/records' },
     { id: 'schemes', label: 'Schemes', icon: Heart, path: '/schemes' },
-    { id: 'profile', label: 'Profile', icon: User, path: '/profile' },
-    { id: 'test-record', label: 'Test', icon: FileText, path: '/view-record/citizen/95026127911610' } // Test button
+    { id: 'profile', label: 'Profile', icon: User, path: '/profile' }
   ];
 
   const handleTabClick = (tab: typeof tabs[0]) => {
@@ -25,7 +24,7 @@ const BottomNavigation = ({ activeTab, onTabChange }: BottomNavigationProps) => 
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border z-40">
-      <div className="grid grid-cols-5 h-16">
+      <div className="grid grid-cols-4 h-16">
         {tabs.map((tab) => {
           const IconComponent = tab.icon;
           const isActive = activeTab === tab.id || 
@@ -36,10 +35,15 @@ const BottomNavigation = ({ activeTab, onTabChange }: BottomNavigationProps) => 
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab)}
-              className={`nav-item ${isActive ? 'active' : ''}`}
+              className={`flex flex-col items-center justify-center h-full w-full 
+                transition-colors duration-200 
+                ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}
+                hover:bg-muted/50 active:bg-muted`}
             >
-              <IconComponent size={20} />
-              <span className="text-xs font-medium">{tab.label}</span>
+              <div className="flex flex-col items-center justify-center h-10 w-10 rounded-full">
+                <IconComponent size={20} className="mb-0.5" />
+                <span className="text-[10px] font-medium leading-none mt-0.5">{tab.label}</span>
+              </div>
             </button>
           );
         })}

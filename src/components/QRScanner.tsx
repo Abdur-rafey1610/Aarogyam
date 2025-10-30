@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, lazy, Suspense } from "react";
+import React, { useState, useRef, useCallback, lazy, Suspense } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Camera, NfcIcon, ArrowLeft, Loader2, AlertTriangle, RotateCcw } from "lucide-react";
@@ -284,6 +284,10 @@ const QRScanner = ({ onClose, showNfcButton = true, onScanSuccess }: QRScannerPr
           }
           
           if (abhaId) {
+            // Redirect to the test page after successful NFC scan
+            navigate('/test-page');
+            
+            // Optional: You can still call handleScanResult if needed
             handleScanResult(JSON.stringify({
               abhaId,
               name: patientName || "Patient",

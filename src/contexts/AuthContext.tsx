@@ -26,7 +26,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const mockCitizenUser: User = {
-  name: "Ananya Sharma",
+  name: "Yasser Ahmed",
   aadhaarId: "XXXX-XXXX-5678",
   abhaId: "21-4365-8790-5432",
   avatarUrl: "https://ui.shadcn.com/avatars/01.png",
