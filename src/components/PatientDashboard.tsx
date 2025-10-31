@@ -22,6 +22,7 @@ import QRModal from "./QRModal";
 import QRScanner from "./QRScanner";
 import { useToast } from "@/hooks/use-toast";
 import { type CarouselApi } from "@/components/ui/carousel"
+import patientAvatar from "@/assets/WhatsApp Image 2025-11-01 at 02.35.42_feae7a0a.jpg";
 
 const PatientDashboard = () => {
   const { user } = useAuth();
@@ -354,7 +355,7 @@ const PatientDashboard = () => {
           <section className="mb-8">
             <Card className="card-soft p-4 flex items-center space-x-6">
               <Avatar className="h-20 w-20 border-4 border-white/50 shadow-lg">
-                <AvatarImage src={user?.avatarUrl} alt={user?.name} />
+                <AvatarImage src={patientAvatar} alt={user?.name} />
                 <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div className="space-y-1">
