@@ -27,7 +27,7 @@ app.post('/ivr/welcome', (req, res) => {
   });
   gather.say({ language: 'en-IN' }, 'For English, press 1.');
   gather.say({ language: 'hi-IN' }, 'हिंदी के लिए, 2 दबाएं।');
-  gather.say({ language: 'te-IN' }, 'తెలుగు కోసం, 3 నొక్కండి।');
+  gather.say({ language: 'te-IN' }, 'Telugu kosam, moodu nokkandi.');
 
   res.type('text/xml');
   res.send(twiml.toString());
@@ -51,8 +51,8 @@ app.post('/ivr/handle-language-selection', (req, res) => {
     gather.say({ language: 'hi-IN' }, 'अब्दुर राफे, आभा आईडी 6 3 0 4 7 3 3 7 1 3 1 6 1 0।');
     gather.say({ language: 'hi-IN' }, 'अपना नवीनतम डॉक्टर का पर्चा सुनने के लिए 1 दबाएं। अपनी emergency details सुनने के लिए 2 दबाएं। लैब रिपोर्ट के लिए 3 दबाएं। पारिवारिक रिपोर्ट के लिए 4 दबाएं। सार्वजनिक अलर्ट के लिए 5 दबाएं।');
   } else if (language === '3') {
-    gather.say({ language: 'te-IN' }, 'అబ్దుర్ రాఫే, ఆభా ఐడి 6 3 0 4 7 3 3 7 1 3 1 6 1 0।');
-    gather.say({ language: 'te-IN' }, 'మీ తాజా ప్రిస్క్రిప్షన్ వినడానికి 1 నొక్కండి. మీ అత్యవసర వివరాలు వినడానికి 2 నొక్కండి. ల్యాబ్ నివేదికల కోసం 3 నొక్కండి. కుటుంబ నివేదికల కోసం 4 నొక్కండి. ప్రజా హెచ్చరికల కోసం 5 నొక్కండి。');
+    gather.say({ language: 'te-IN' }, 'Abdur Rafey, ABHA ID 6 3 0 4 7 3 3 7 1 3 1 6 1 0.');
+    gather.say({ language: 'te-IN' }, 'Mee taajaa prescription vinadaaniki okati nokkandi. Mee atyavasara vivaraalu vinadaaniki rendu nokkandi. Lab reportla kosam moodu nokkandi. Kutumba reportla kosam naalugu nokkandi. Prajaa hecharikala kosam ayidu nokkandi.');
   } else {
     twiml.say({ language: 'en-IN' }, 'Invalid selection.');
     twiml.redirect('/ivr/welcome');
@@ -89,21 +89,22 @@ const translateInstruction = (instruction, language) => {
                 return instruction;
         }
     } else if (language === 'te-IN') {
+case 'te-IN':
         switch (instruction) {
             case 'After meals':
-                return 'భోజనం తర్వాత';
+                return 'Bhojanam tarvata';
             case 'Before bedtime':
-                return 'నిద్రపోయే ముందు';
+                return 'Nidrapoye mundu';
             case 'Morning, with water':
-                return 'ఉదయం, నీటితో';
+                return 'Udayam, neetitho';
             case 'On affected area only':
-                return 'ప్రభావిత ప్రాంతంలో మాత్రమే';
+                return 'Prabhavita praanthamlo maatrame';
             case 'With or without food':
-                return 'భోజనంతో లేదా లేకుండా';
+                return 'Bhojananto leda lekunda';
             case 'With breakfast':
-                return 'అల్పాహారంతో';
+                return 'Alpaahaaramto';
             case 'With milk or after meal':
-                return 'పాలతో లేదా భోజనం తర్వాత';
+                return 'Paalato leda bhojanam tarvata';
             default:
                 return instruction;
         }
@@ -129,17 +130,17 @@ const translateDuration = (duration, language) => {
         }
     } else if (language === 'te-IN') {
         if (duration === 'Ongoing') {
-            return 'కొనసాగుతోంది';
+            return 'Konasaagutondi';
         }
         const parts = duration.split(' ');
         if (parts.length === 2) {
             const value = parts[0];
             const unit = parts[1];
             if (unit === 'days' || unit === 'day') {
-                return `${value} రోజులు`;
+                return `${value} rojulu`;
             }
             if (unit === 'weeks' || unit === 'week') {
-                return `${value} వారాలు`;
+                return `${value} vaaralu`;
             }
         }
     }
@@ -163,13 +164,13 @@ const translateFrequency = (frequency, language) => {
     } else if (language === 'te-IN') {
         switch (frequency) {
             case 'Twice daily':
-                return 'రోజుకు రెండుసార్లు';
+                return 'Rojuku rendusaarlu';
             case 'Once daily':
-                return 'రోజుకు ఒకసారి';
+                return 'Rojuku okasaari';
             case 'Three times daily':
-                return 'రోజుకు మూడుసార్లు';
+                return 'Rojuku moodusaarlu';
             case 'Once weekly':
-                return 'వారానికి ఒకసారి';
+                return 'Vaaraniki okasaari';
             default:
                 return frequency;
         }
@@ -195,16 +196,16 @@ const translateNumberToHindi = (text) => {
 
 const translateNumberToTelugu = (text) => {
     const teluguDigits = {
-        '0': 'సున్నా',
-        '1': 'ఒకటి',
-        '2': 'రెండు',
-        '3': 'మూడు',
-        '4': 'నాలుగు',
-        '5': 'ఐదు',
-        '6': 'ఆరు',
-        '7': 'ఏడు',
-        '8': 'ఎనిమిది',
-        '9': 'తొమ్మిది'
+        '0': 'sunna',
+        '1': 'okati',
+        '2': 'rendu',
+        '3': 'moodu',
+        '4': 'naalugu',
+        '5': 'ayidu',
+        '6': 'aaru',
+        '7': 'eedu',
+        '8': 'enimidi',
+        '9': 'tommidi'
     };
     return text.replace(/\d/g, (digit) => teluguDigits[digit] || digit);
 };
@@ -340,8 +341,8 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
         const medications = latestPrescription.medications.map(med => `${translateNumberToHindi(med.name)} ${med.dosage}, ${translateFrequency(med.frequency, 'hi-IN')}, ${translateInstruction(med.instructions, 'hi-IN')}, ${translateNumberToHindi(translateDuration(med.duration, 'hi-IN'))} के लिए`).join('. ');
         twiml.say({ language: 'hi-IN' }, `डॉक्टर ${latestPrescription.doctor} द्वारा ${latestPrescription.date} को दिया गया आपका नवीनतम डॉक्टर का पर्चा है: ${medications}।`);
     } else if (language === '3') {
-        const medications = latestPrescription.medications.map(med => `${translateNumberToTelugu(med.name)} ${translateNumberToTelugu(med.dosage)}, ${translateFrequency(med.frequency, 'te-IN')}, ${translateInstruction(med.instructions, 'te-IN')}, ${translateNumberToTelugu(translateDuration(med.duration, 'te-IN'))} కోసం`).join('. ');
-        twiml.say({ language: 'te-IN' }, `డాక్టర్ ${latestPrescription.doctor} ద్వారా ${latestPrescription.date} న ఇవ్వబడిన మీ తాజా ప్రిస్క్రిప్షన్: ${medications}।`);
+        const medications = latestPrescription.medications.map(med => `${translateNumberToTelugu(med.name)} ${translateNumberToTelugu(med.dosage)}, ${translateFrequency(med.frequency, 'te-IN')}, ${translateInstruction(med.instructions, 'te-IN')}, ${translateNumberToTelugu(translateDuration(med.duration, 'te-IN'))} kosam`).join('. ');
+        twiml.say({ language: 'te-IN' }, `Doctor ${latestPrescription.doctor} dvaaraa ${latestPrescription.date} na ivvabadina mee taajaa prescription: ${medications}.`);
     }
   } else if (selection === '2') {
     // TODO: Fetch and read the emergency medical information
@@ -350,7 +351,7 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
     } else if (language === '2') {
         twiml.say({ language: 'hi-IN' }, 'आपकी emergency details है: रोगी को मूंगफली से गंभीर एलर्जी है। आकस्मिक संपर्क की स्थिति में, तुरंत EpiPen दें और आपातकालीन सेवाओं को कॉल करें।');
     } else if (language === '3') {
-        twiml.say({ language: 'te-IN' }, 'మీ అత్యవసర వివరాలు: రోగికి వేరుశెనగతో తీవ్రమైన అలెర్జీ ఉంది. ప్రమాదవశాత్తు బహిర్గతం అయినప్పుడు, వెంటనే EpiPen ను వాడండి మరియు అత్యవసర సేవలకు కాల్ చేయండి。');
+        twiml.say({ language: 'te-IN' }, 'Mee atyavasara vivaraalu: Rogiki verusenagato teevramaina allergy undi. Pramadavashaattu bahirgatam ayinappudu, ventane EpiPen nu vaadandi mariyu atyavasara sevalaku call cheyandi.');
     }
   } else if (selection === '3') {
     if (language === '1') {
@@ -358,7 +359,7 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
     } else if (language === '2') {
         twiml.say({ language: 'hi-IN' }, 'आपकी नवीनतम लैब रिपोर्ट एक रक्त परीक्षण के लिए है, और सभी मान सामान्य सीमा के भीतर हैं।');
     } else if (language === '3') {
-        twiml.say({ language: 'te-IN' }, 'మీ తాజా ల్యాబ్ నివేదిక రక్త పరీక్ష కోసం, మరియు అన్ని విలువలు సాధారణ పరిధిలో ఉన్నాయి。');
+        twiml.say({ language: 'te-IN' }, 'Mee taajaa lab report rakta pareeksha kosam, mariyu anni viluvalu saadharana paridhilo unnaayi.');
     }
   } else if (selection === '4') {
     if (language === '1') {
@@ -366,7 +367,7 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
     } else if (language === '2') {
         twiml.say({ language: 'hi-IN' }, 'आपके पास कोई नई पारिवारिक रिपोर्ट नहीं है।');
     } else if (language === '3') {
-        twiml.say({ language: 'te-IN' }, 'మీకు కొత్త కుటుంబ నివేదికలు ఏవీ లేవు。');
+        twiml.say({ language: 'te-IN' }, 'Meeku kotta kutumba reportlu evi levu.');
     }
   } else if (selection === '5') {
     if (language === '1') {
@@ -374,7 +375,7 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
     } else if (language === '2') {
         twiml.say({ language: 'hi-IN' }, 'आपके क्षेत्र में कोई नया सार्वजनिक स्वास्थ्य अलर्ट नहीं है।');
     } else if (language === '3') {
-        twiml.say({ language: 'te-IN' }, 'మీ ప్రాంతంలో కొత్త ప్రజా ఆరోగ్య హెచ్చరికలు ఏవీ లేవు。');
+        twiml.say({ language: 'te-IN' }, 'Mee praanthamlo kotta prajaa aarogya hecharikalu evi levu.');
     }
   } else {
     if (language === '1') {
@@ -382,7 +383,7 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
     } else if (language === '2') {
         twiml.say({ language: 'hi-IN' }, 'अमान्य चयन।');
     } else if (language === '3') {
-        twiml.say({ language: 'te-IN' }, 'తప్పు ఎంపిక。');
+        twiml.say({ language: 'te-IN' }, 'Tappu empika.');
     }
   }
 
@@ -391,7 +392,7 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
   } else if (language === '2') {
     twiml.say({ language: 'hi-IN' }, 'आरोग्यम का उपयोग करने के लिए धन्यवाद। अलविदा।');
   } else if (language === '3') {
-    twiml.say({ language: 'te-IN' }, 'ఆరోగ్యం ఉపయోగించినందుకు ధన్యవాదాలు. వీడ్కోలు。');
+    twiml.say({ language: 'te-IN' }, 'Aarogyam upayoginchinanduku dhanyavaadaalu. Veellu.');
   }
   twiml.hangup();
 
