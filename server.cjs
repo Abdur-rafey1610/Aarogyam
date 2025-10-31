@@ -340,7 +340,7 @@ app.post('/ivr/handle-menu-selection', (req, res) => {
         const medications = latestPrescription.medications.map(med => `${translateNumberToHindi(med.name)} ${med.dosage}, ${translateFrequency(med.frequency, 'hi-IN')}, ${translateInstruction(med.instructions, 'hi-IN')}, ${translateNumberToHindi(translateDuration(med.duration, 'hi-IN'))} के लिए`).join('. ');
         twiml.say({ language: 'hi-IN' }, `डॉक्टर ${latestPrescription.doctor} द्वारा ${latestPrescription.date} को दिया गया आपका नवीनतम डॉक्टर का पर्चा है: ${medications}।`);
     } else if (language === '3') {
-        const medications = latestPrescription.medications.map(med => `${translateNumberToTelugu(med.name)} ${med.dosage}, ${translateFrequency(med.frequency, 'te-IN')}, ${translateInstruction(med.instructions, 'te-IN')}, ${translateNumberToTelugu(translateDuration(med.duration, 'te-IN'))} కోసం`).join('. ');
+        const medications = latestPrescription.medications.map(med => `${translateNumberToTelugu(med.name)} ${translateNumberToTelugu(med.dosage)}, ${translateFrequency(med.frequency, 'te-IN')}, ${translateInstruction(med.instructions, 'te-IN')}, ${translateNumberToTelugu(translateDuration(med.duration, 'te-IN'))} కోసం`).join('. ');
         twiml.say({ language: 'te-IN' }, `డాక్టర్ ${latestPrescription.doctor} ద్వారా ${latestPrescription.date} న ఇవ్వబడిన మీ తాజా ప్రిస్క్రిప్షన్: ${medications}।`);
     }
   } else if (selection === '2') {
