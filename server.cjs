@@ -419,7 +419,6 @@ if (process.env.NODE_ENV !== 'production') {
       console.log('Make sure to replace YOUR_LOCAL_IP with your computer\'s local IP address');
     });
   }
-  
-  module.exports = app;}
+}
 
 module.exports = app;
