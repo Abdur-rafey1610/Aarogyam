@@ -89,7 +89,6 @@ const translateInstruction = (instruction, language) => {
                 return instruction;
         }
     } else if (language === 'te-IN') {
-case 'te-IN':
         switch (instruction) {
             case 'After meals':
                 return 'Bhojanam tarvata';
